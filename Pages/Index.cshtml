@@ -1,21 +1,21 @@
 @page
 @model IndexModel
 @{
-    ViewData["Title"] = "Lab 2: Data & Databases Overview";
+    ViewData["Title"] = "Lab 3: CRUD Operations Overview";
 }
 
 <div class="page-hero hero-blue">
-    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+    <div class="hero-badges">
         <span class="step-pill pill-teal">@Model.ModuleName</span>
         <span class="step-pill">Student Starter</span>
     </div>
     <h1>@Model.LabTitle</h1>
     <p class="lead">
-        Welcome to your starter project for <strong>Lab 2</strong>! In this lab, you will extend a basic ASP.NET Core Razor Pages application into a data-driven web app by connecting an SQLite database with Entity Framework Core, executing LINQ queries, passing route parameters to view staff details, and building dynamic search filters.
+        Welcome to your starter project for <strong>Lab 3</strong>! In this lab, you will extend your ASP.NET Core Razor Pages application by implementing full <strong>CRUD (Create, Read, Update, Delete)</strong> operations using Entity Framework Core and SQLite. You will build HTML input forms, handle HTTP POST requests, validate user input with Data Annotations, enforce safe data deletion workflows, and apply the Post-Redirect-Get (PRG) pattern with TempData user feedback.
     </p>
-    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.25rem;">
-        <a asp-page="/Staff/Index" class="btn btn-primary">Go to Staff Directory Starter &rarr;</a>
-        <a href="https://github.com/mustbebuilt/webdev-razor-lab2-data/wiki" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+    <div class="hero-actions">
+        <a asp-page="/Staff/Index" class="btn btn-primary">Go to Staff Directory &rarr;</a>
+        <a href="https://github.com/mustbebuilt/razor-lab3-cruding/wiki" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
             📖 Open Wiki Tutorial Guide
         </a>
     </div>
@@ -29,19 +29,22 @@
     <div class="checklist">
         <ol>
             <li>
-                <strong>Create &amp; seed your local database:</strong> Run <code>sqlite3 Data/staff.db &lt; resources/staff-sqlite.sql</code> to create the SQLite table and seed 6 staff records.
+                <strong>Review the PRG Pattern &amp; CRUD Overview:</strong> Follow Step 01 in the Wiki to understand HTTP GET vs POST workflows, inspect the starter code, and master the Post-Redirect-Get design pattern.
             </li>
             <li>
-                <strong>Follow Step 01 in the Wiki:</strong> Add <code>Microsoft.EntityFrameworkCore.Sqlite</code>, create <code>Models/Staff.cs</code>, build <code>Data/ApplicationDbContext.cs</code>, and register it in <code>Program.cs</code>.
+                <strong>Implement Record Creation (Step 02):</strong> Build <code>Pages/Staff/Create.cshtml</code>, use <code>asp-for</code> Tag Helpers, handle <code>OnPostAsync()</code>, and insert records into SQLite with <code>_context.Staff.Add()</code>.
             </li>
             <li>
-                <strong>Render the Staff Directory:</strong> Update <code>Pages/Staff/Index.cshtml</code> and its code-behind to query the staff table with <code>ToListAsync()</code>.
+                <strong>Add Form Validation (Step 03):</strong> Apply Data Annotations (<code>[Required]</code>, <code>[EmailAddress]</code>, <code>[Range]</code>) in <code>Models/Staff.cs</code> and enforce <code>ModelState.IsValid</code>.
             </li>
             <li>
-                <strong>Follow Step 03:</strong> Add a parameterized Details page (<code>/Staff/Details/{id}</code>) to inspect individual staff records by primary key.
+                <strong>Implement Record Editing (Step 04):</strong> Create <code>Pages/Staff/Edit.cshtml</code>, bind the entity route ID, preserve primary keys via hidden inputs, and safely update records.
             </li>
             <li>
-                <strong>Follow Step 04:</strong> Add an HTTP GET search form and dynamic last-name filtering using <code>IQueryable&lt;Staff&gt;</code>.
+                <strong>Implement Safe Deletion (Step 05):</strong> Build a two-step confirmation workflow in <code>Pages/Staff/Delete.cshtml</code> to ensure destructive actions require explicit POST confirmation.
+            </li>
+            <li>
+                <strong>Add User Feedback (Step 06):</strong> Display flash alert notifications across redirects using <code>TempData["SuccessMessage"]</code>.
             </li>
         </ol>
     </div>
@@ -52,44 +55,44 @@
     <div class="demo-card">
         <div class="demo-card-header">
             <span class="step-pill pill-teal">Step 01</span>
-            <h3>SQLite &amp; EF Core Integration</h3>
+            <h3>CRUD Overview &amp; the PRG Pattern</h3>
         </div>
         <p>
-            Learn what an Object-Relational Mapper (ORM) is, install the EF Core SQLite provider, create your strongly-typed <code>Staff</code> entity model, configure your <code>ApplicationDbContext</code>, and register it with ASP.NET Core Dependency Injection.
+            Explore core CRUD concepts, understand why web applications distinguish GET and POST, and learn how the Post-Redirect-Get (PRG) pattern prevents duplicate form submissions.
         </p>
-        <a asp-page="/Staff/Index" class="btn btn-outline btn-sm">Staff Directory Starter &rarr;</a>
+        <a href="https://github.com/mustbebuilt/razor-lab3-cruding/wiki/01.-CRUD-Overview-and-the-PRG-Pattern" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Read Step 01 Guide &rarr;</a>
     </div>
 
     <div class="demo-card">
         <div class="demo-card-header">
-            <span class="step-pill pill-teal">Step 03</span>
-            <h3>Route Parameters &amp; Details</h3>
+            <span class="step-pill pill-teal">Step 02 &amp; 03</span>
+            <h3>Inserting Data &amp; Validation</h3>
         </div>
         <p>
-            Use <code>asp-route-id</code> Tag Helpers and the <code>@@page "{id:int}"</code> route constraint to create a dedicated <strong>Staff Details</strong> page (<code>/Staff/Details/{id}</code>) that fetches records by primary key using <code>FindAsync(id)</code>.
+            Construct strongly typed forms using <code>asp-for</code> Tag Helpers. Apply Data Annotations to enforce validation rules on names, emails, and salaries with helpful user feedback.
         </p>
-        <a asp-page="/Staff/Index" class="btn btn-outline btn-sm">View Details Workflow &rarr;</a>
+        <a href="https://github.com/mustbebuilt/razor-lab3-cruding/wiki/02.-Inserting-Data-Creating-Records" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Read Step 02 Guide &rarr;</a>
     </div>
 
     <div class="demo-card">
         <div class="demo-card-header">
             <span class="step-pill pill-amber">Step 04</span>
-            <h3>Dynamic Search &amp; Model Binding</h3>
+            <h3>Editing &amp; Updating Records</h3>
         </div>
         <p>
-            Implement an HTTP GET search form with <code>[BindProperty(SupportsGet = true)]</code>. Build deferred LINQ queries dynamically using <code>IQueryable&lt;Staff&gt;</code> to filter staff records by last name.
+            Build dedicated edit views parameterized by route ID (<code>{id:int}</code>). Preserve primary key state across POST requests and update database entities safely.
         </p>
-        <a asp-page="/Staff/Index" class="btn btn-outline btn-sm">Explore Search UI &rarr;</a>
+        <a href="https://github.com/mustbebuilt/razor-lab3-cruding/wiki/04.-Editing-Data-Updating-Records" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Read Step 04 Guide &rarr;</a>
     </div>
 
     <div class="demo-card">
         <div class="demo-card-header">
-            <span class="step-pill">Step 02</span>
-            <h3>MSSQL Database (Alternative)</h3>
+            <span class="step-pill">Step 05 &amp; 06</span>
+            <h3>Safe Deletion &amp; Flash Feedback</h3>
         </div>
         <p>
-            Explore enterprise database connectivity using Microsoft SQL Server, Azure SQL, or Docker containers. Learn how EF Core Migrations maintain relational database schemas in team environments.
+            Enforce safe two-step delete operations that prevent accidental data loss. Provide intuitive user feedback using <code>TempData</code> flash messages following successful operations.
         </p>
-        <a href="https://github.com/mustbebuilt/webdev-razor-lab2-data/wiki/02.-MSSQL-Database-Integration" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">View MSSQL Guide &rarr;</a>
+        <a href="https://github.com/mustbebuilt/razor-lab3-cruding/wiki/05.-Deleting-Data-Safe-Deletion" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Read Step 05 Guide &rarr;</a>
     </div>
 </div>

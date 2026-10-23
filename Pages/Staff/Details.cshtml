@@ -6,9 +6,9 @@
 
 <h1>Staff Details</h1>
 
-<div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+<div class="action-row">
     <a asp-page="/Staff/Edit" asp-route-id="@Model.Staff.StaffId" class="btn btn-primary">Edit Record</a>
-    <a asp-page="/Staff/Delete" asp-route-id="@Model.Staff.StaffId" class="btn btn-outline" style="color: var(--danger); border-color: var(--danger);">Delete Record</a>
+    <a asp-page="/Staff/Delete" asp-route-id="@Model.Staff.StaffId" class="btn btn-outline btn-outline-danger">Delete Record</a>
     <a asp-page="/Staff/Index" class="btn btn-outline">Back to Directory</a>
 </div>
 
@@ -40,11 +40,11 @@
     <dd>
         @if (Model.Staff.IsActive == 1)
         {
-            <span>Active</span>
+            <span class="status-active">Active</span>
         }
         else
         {
-            <span>Inactive</span>
+            <span class="status-inactive">Inactive</span>
         }
     </dd>
 </dl>

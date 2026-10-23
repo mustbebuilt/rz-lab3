@@ -10,14 +10,14 @@
 <!-- Flash Success Notification -->
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success" style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 1.5rem;">
-        <span style="font-size: 1.25rem;">✅</span>
+    <div class="alert alert-success alert-with-icon">
+        <span class="alert-icon">✅</span>
         <span>@TempData["SuccessMessage"]</span>
     </div>
 }
 
 <!-- Add New Staff Button -->
-<div style="margin-bottom: 1.25rem;">
+<div class="action-bar">
     <a asp-page="/Staff/Create" class="btn btn-primary">+ Add New Staff Member</a>
 </div>
     <!-- Search Form using HTTP GET -->
@@ -43,32 +43,29 @@
     }
     else
     {
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Details</th>
-                </tr>
-            </thead>
-            <tbody>
-
-
-    @foreach (var member in Model.StaffMembers)
-    {
-        <tr>
-            <td>@member.StaffId</td>
-            <td>@member.FirstName @member.LastName</td>
-        
-<td>
-    <a asp-page="/Staff/Details" asp-route-id="@member.StaffId" class="btn btn-outline btn-sm">Details</a>
-    <a asp-page="/Staff/Edit" asp-route-id="@member.StaffId" class="btn btn-outline btn-sm">Edit</a>
-    <a asp-page="/Staff/Delete" asp-route-id="@member.StaffId" class="btn btn-outline btn-sm" style="color: var(--danger);">Delete</a>
-</td>
-        </tr>
-    }
-
-          
-            </tbody>
-        </table>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var member in Model.StaffMembers)
+                {
+                    <tr>
+                        <td>@member.StaffId</td>
+                        <td>@member.FirstName @member.LastName</td>
+                        <td>
+                            <a asp-page="/Staff/Details" asp-route-id="@member.StaffId" class="btn btn-outline btn-sm">Details</a>
+                            <a asp-page="/Staff/Edit" asp-route-id="@member.StaffId" class="btn btn-outline btn-sm">Edit</a>
+                            <a asp-page="/Staff/Delete" asp-route-id="@member.StaffId" class="btn btn-outline btn-outline-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
     }

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Design System & Tokens - Lab 2: Data & Databases in Razor Pages
+   Design System & Tokens - Lab 3: CRUD Operations in Razor Pages
    ========================================================================== */
 
 :root {
@@ -77,9 +77,8 @@ header {
   margin: 0 auto;
   padding: 0.85rem 1.5rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 1rem;
 }
 
@@ -235,6 +234,30 @@ pre {
   background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
 }
 
+.page-hero.hero-danger {
+  background: linear-gradient(135deg, #ffffff 0%, #fef2f2 100%);
+  border-color: var(--danger-border);
+}
+
+.page-hero.hero-danger h1 {
+  color: var(--danger);
+}
+
+.hero-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+}
+
 .page-hero h1 {
   margin-bottom: 0.6rem;
 }
@@ -356,9 +379,50 @@ pre {
   border-color: var(--primary);
 }
 
+.btn-danger {
+  background-color: var(--danger);
+  color: white;
+  border-color: var(--danger);
+}
+
+.btn-danger:hover {
+  background-color: #b91c1c;
+  border-color: #b91c1c;
+  color: white;
+}
+
+.btn-outline-danger {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.btn-outline-danger:hover {
+  background-color: var(--danger-bg);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
 .btn-sm {
   padding: 0.35rem 0.75rem;
   font-size: 0.82rem;
+}
+
+/* Action Rows & Layouts */
+.action-bar {
+  margin-bottom: 1.25rem;
+}
+
+.action-row,
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.delete-form {
+  margin-top: 1.5rem;
 }
 
 /* Callout & Alerts */
@@ -386,6 +450,17 @@ pre {
   background-color: var(--success-bg);
   border-color: var(--success-border);
   color: #065f46;
+}
+
+.alert-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.alert-icon {
+  font-size: 1.25rem;
+  line-height: 1;
 }
 
 .alert-checklist {
@@ -483,7 +558,7 @@ tbody tr:hover {
   border: 1px solid var(--border);
 }
 
-/* Search Forms */
+/* Forms & Inputs */
 .search-form {
   background-color: var(--bg-surface);
   border: 1px solid var(--border);
@@ -500,7 +575,53 @@ tbody tr:hover {
   flex-wrap: wrap;
 }
 
-.search-input, input[type="text"], input[type="email"], select {
+.form-card,
+.form-container {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  max-width: 680px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+/* Mobile-first Form Grid: single column by default */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-grid.form-grid-lg {
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group.form-group-last {
+  margin-bottom: 1.75rem;
+}
+
+label,
+.form-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--text-main);
+  font-size: 0.92rem;
+}
+
+.search-input,
+.form-control,
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="number"],
+select {
   font-family: inherit;
   font-size: 0.92rem;
   padding: 0.55rem 0.9rem;
@@ -512,7 +633,17 @@ tbody tr:hover {
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.search-input:focus, input[type="text"]:focus, select:focus {
+.form-control {
+  width: 100%;
+}
+
+.search-input:focus,
+.form-control:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus,
+select:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 3px var(--primary-light);
 }
@@ -522,6 +653,18 @@ tbody tr:hover {
   min-width: 240px;
 }
 
+.validation-message,
+.field-validation-error {
+  color: var(--danger);
+  font-size: 0.82rem;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.field-validation-valid {
+  display: none;
+}
+
 /* Definition List for Details View */
 dl.details-list {
   background: white;
@@ -529,8 +672,8 @@ dl.details-list {
   border-radius: var(--radius-md);
   padding: 1.5rem;
   display: grid;
-  grid-template-columns: 180px 1fr;
-  row-gap: 0.85rem;
+  grid-template-columns: 1fr;
+  row-gap: 0.35rem;
   column-gap: 1.5rem;
   box-shadow: var(--shadow-xs);
   margin-bottom: 1.5rem;
@@ -539,8 +682,7 @@ dl.details-list {
 dl.details-list dt {
   font-weight: 600;
   color: var(--text-main);
-  border-right: 1px solid var(--border);
-  padding-right: 1rem;
+  padding-top: 0.75rem;
   align-self: start;
 }
 
@@ -548,6 +690,28 @@ dl.details-list dd {
   margin: 0;
   color: var(--text-muted);
   overflow-wrap: anywhere;
+}
+
+/* Utilities */
+.text-danger {
+  color: var(--danger);
+}
+
+.text-light {
+  color: var(--text-light);
+}
+
+.no-results {
+  background-color: var(--bg-surface);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.no-results p {
+  margin: 0;
 }
 
 /* Footer */
@@ -570,20 +734,31 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* Responsive */
-@media (max-width: 640px) {
+/* Responsive Breakpoints - Mobile First (min-width) */
+@media (min-width: 640px) {
   .nav-container {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .form-card,
+  .form-container {
+    padding: 2rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
   }
 
   dl.details-list {
-    grid-template-columns: 1fr;
-    row-gap: 0.35rem;
+    grid-template-columns: 180px 1fr;
+    row-gap: 0.85rem;
   }
 
   dl.details-list dt {
-    border-right: none;
-    padding-top: 0.75rem;
+    border-right: 1px solid var(--border);
+    padding-right: 1rem;
+    padding-top: 0;
   }
 }

@@ -4,13 +4,13 @@
     ViewData["Title"] = $"Delete Staff - {Model.Staff.FirstName} {Model.Staff.LastName}";
 }
 
-<div class="page-hero" style="background: linear-gradient(135deg, #ffffff 0%, #fef2f2 100%); border-color: var(--danger-border);">
-    <h1 style="color: var(--danger);">Confirm Staff Deletion</h1>
+<div class="page-hero hero-danger">
+    <h1 class="text-danger">Confirm Staff Deletion</h1>
     <p class="lead">Are you sure you want to permanently delete this employee record from the database?</p>
 </div>
 
 <!-- Warning Callout -->
-<div class="alert alert-warning" style="margin-bottom: 1.5rem;">
+<div class="alert alert-warning">
     <strong>⚠️ Warning:</strong> This operation cannot be undone. All database records associated with this staff member will be permanently removed from SQLite.
 </div>
 
@@ -48,12 +48,12 @@
 </dl>
 
 <!-- POST Deletion Form -->
-<form method="post" style="margin-top: 1.5rem;">
+<form method="post" class="delete-form">
     <!-- Hidden input to preserve ID -->
     <input type="hidden" asp-for="Staff.StaffId" />
 
-    <div style="display: flex; gap: 0.75rem; align-items: center;">
-        <button type="submit" class="btn" style="background-color: var(--danger); color: white; border-color: var(--danger);">
+    <div class="action-row">
+        <button type="submit" class="btn btn-danger">
             🗑️ Yes, Delete Staff Member
         </button>
         <a asp-page="/Staff/Index" class="btn btn-outline">Cancel and Keep Record</a>

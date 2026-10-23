@@ -9,7 +9,7 @@
     <p class="lead">Enter employee details to register a new staff record in the SQLite database.</p>
 </div>
 
-<div class="table-container" style="max-width: 680px; padding: 2rem;">
+<div class="form-card">
     <!-- Form Tag Helper sets method to POST and includes Anti-Forgery Token -->
 
 <div asp-validation-summary="ModelOnly" class="alert alert-warning" role="alert"></div>
@@ -18,29 +18,29 @@
         <!-- Display form-level error summary -->
         <div asp-validation-summary="ModelOnly" class="alert alert-warning" role="alert"></div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+        <div class="form-grid">
             <div>
-                <label asp-for="Staff.FirstName" style="display: block; font-weight: 600; margin-bottom: 0.35rem;">First Name</label>
-                <input asp-for="Staff.FirstName" class="search-input" style="width: 100%;" placeholder="e.g. Grace" />
-                <span asp-validation-for="Staff.FirstName" style="color: var(--danger); font-size: 0.82rem;"></span>
+                <label asp-for="Staff.FirstName" class="form-label">First Name</label>
+                <input asp-for="Staff.FirstName" class="form-control" placeholder="e.g. Grace" />
+                <span asp-validation-for="Staff.FirstName" class="validation-message"></span>
             </div>
             <div>
-                <label asp-for="Staff.LastName" style="display: block; font-weight: 600; margin-bottom: 0.35rem;">Last Name</label>
-                <input asp-for="Staff.LastName" class="search-input" style="width: 100%;" placeholder="e.g. Hopper" />
-                <span asp-validation-for="Staff.LastName" style="color: var(--danger); font-size: 0.82rem;"></span>
+                <label asp-for="Staff.LastName" class="form-label">Last Name</label>
+                <input asp-for="Staff.LastName" class="form-control" placeholder="e.g. Hopper" />
+                <span asp-validation-for="Staff.LastName" class="validation-message"></span>
             </div>
         </div>
 
-        <div style="margin-bottom: 1rem;">
-            <label asp-for="Staff.Email" style="display: block; font-weight: 600; margin-bottom: 0.35rem;">Email Address</label>
-            <input asp-for="Staff.Email" type="email" class="search-input" style="width: 100%;" placeholder="grace.hopper@company.com" />
-            <span asp-validation-for="Staff.Email" style="color: var(--danger); font-size: 0.82rem;"></span>
+        <div class="form-group">
+            <label asp-for="Staff.Email" class="form-label">Email Address</label>
+            <input asp-for="Staff.Email" type="email" class="form-control" placeholder="grace.hopper@company.com" />
+            <span asp-validation-for="Staff.Email" class="validation-message"></span>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+        <div class="form-grid">
             <div>
-                <label asp-for="Staff.Department" style="display: block; font-weight: 600; margin-bottom: 0.35rem;">Department</label>
-                <select asp-for="Staff.Department" class="search-input" style="width: 100%;">
+                <label asp-for="Staff.Department" class="form-label">Department</label>
+                <select asp-for="Staff.Department" class="form-control">
                     <option value="">-- Select Department --</option>
                     <option value="Engineering">Engineering</option>
                     <option value="Human Resources">Human Resources</option>
@@ -48,38 +48,38 @@
                     <option value="Marketing">Marketing</option>
                     <option value="Sales">Sales</option>
                 </select>
-                <span asp-validation-for="Staff.Department" style="color: var(--danger); font-size: 0.82rem;"></span>
+                <span asp-validation-for="Staff.Department" class="validation-message"></span>
             </div>
             <div>
-                <label asp-for="Staff.JobTitle" style="display: block; font-weight: 600; margin-bottom: 0.35rem;">Job Title</label>
-                <input asp-for="Staff.JobTitle" class="search-input" style="width: 100%;" placeholder="e.g. Software Engineer" />
-                <span asp-validation-for="Staff.JobTitle" style="color: var(--danger); font-size: 0.82rem;"></span>
+                <label asp-for="Staff.JobTitle" class="form-label">Job Title</label>
+                <input asp-for="Staff.JobTitle" class="form-control" placeholder="e.g. Software Engineer" />
+                <span asp-validation-for="Staff.JobTitle" class="validation-message"></span>
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+        <div class="form-grid form-grid-lg">
             <div>
-                <label asp-for="Staff.StartDate" style="display: block; font-weight: 600; margin-bottom: 0.35rem;">Start date</label>
-                <input asp-for="Staff.StartDate" type="date" class="search-input" style="width: 100%;" />
-                <span asp-validation-for="Staff.StartDate" style="color: var(--danger); font-size: 0.82rem;"></span>
+                <label asp-for="Staff.StartDate" class="form-label">Start date</label>
+                <input asp-for="Staff.StartDate" type="date" class="form-control" />
+                <span asp-validation-for="Staff.StartDate" class="validation-message"></span>
             </div>
             <div>
-                <label asp-for="Staff.Salary" style="display: block; font-weight: 600; margin-bottom: 0.35rem;">Annual Salary (£)</label>
-                <input asp-for="Staff.Salary" type="number" step="100" class="search-input" style="width: 100%;" placeholder="50000" />
-                <span asp-validation-for="Staff.Salary" style="color: var(--danger); font-size: 0.82rem;"></span>
+                <label asp-for="Staff.Salary" class="form-label">Annual Salary (£)</label>
+                <input asp-for="Staff.Salary" type="number" step="100" class="form-control" placeholder="50000" />
+                <span asp-validation-for="Staff.Salary" class="validation-message"></span>
             </div>
         </div>
 
-        <div style="margin-bottom: 1.75rem;">
-            <label asp-for="Staff.IsActive" style="display: block; font-weight: 600; margin-bottom: 0.35rem;">Employment Status</label>
-            <select asp-for="Staff.IsActive" class="search-input" style="width: 100%;">
+        <div class="form-group form-group-last">
+            <label asp-for="Staff.IsActive" class="form-label">Employment Status</label>
+            <select asp-for="Staff.IsActive" class="form-control">
                 <option value="1">Active</option>
                 <option value="0">Inactive</option>
             </select>
-            <span asp-validation-for="Staff.IsActive" style="color: var(--danger); font-size: 0.82rem;"></span>
+            <span asp-validation-for="Staff.IsActive" class="validation-message"></span>
         </div>
 
-        <div style="display: flex; gap: 0.75rem; align-items: center;">
+        <div class="form-actions">
             <button type="submit" class="btn btn-primary">Create Staff Member</button>
             <a asp-page="/Staff/Index" class="btn btn-outline">Cancel</a>
         </div>

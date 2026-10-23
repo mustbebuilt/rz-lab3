@@ -17,7 +17,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddRazorPages();
 
 // -----------------------------------------------------------------------------
-// LAB 2 - STEP 01: Database Connection Setup
+// LAB 3: Database & Service Registration
 // -----------------------------------------------------------------------------
 // Once you complete Step 01 of the tutorial, you will:
 // 1. Install the NuGet package:
