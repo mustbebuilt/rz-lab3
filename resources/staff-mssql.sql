@@ -10,14 +10,14 @@ BEGIN
         [email]      NVARCHAR(100) NOT NULL UNIQUE,
         [department] NVARCHAR(50) NOT NULL DEFAULT 'General',
         [job_title]  NVARCHAR(50) NOT NULL,
-        [hire_date]  NVARCHAR(10) NOT NULL DEFAULT (CONVERT(VARCHAR(10), GETDATE(), 120)),
+        [start_date]  NVARCHAR(10) NOT NULL DEFAULT (CONVERT(VARCHAR(10), GETDATE(), 120)),
         [salary]     DECIMAL(18, 2) NOT NULL,
         [is_active]  INT NOT NULL DEFAULT 1 CHECK ([is_active] IN (0, 1))
     );
 END;
 
 -- 2. Populate Sample Staff Data
-INSERT INTO [dbo].[staff] ([first_name], [last_name], [email], [department], [job_title], [hire_date], [salary], [is_active]) VALUES
+INSERT INTO [dbo].[staff] ([first_name], [last_name], [email], [department], [job_title], [start_date], [salary], [is_active]) VALUES
 ('Alice', 'Johnson', 'alice.johnson@company.com', 'Engineering', 'Engineering Manager', '2021-03-15', 85000.00, 1),
 ('Brian', 'Lee', 'brian.lee@company.com', 'Engineering', 'Senior Developer', '2022-06-01', 72000.00, 1),
 ('Carla', 'Gomez', 'carla.gomez@company.com', 'Human Resources', 'HR Specialist', '2020-09-12', 58000.00, 0),

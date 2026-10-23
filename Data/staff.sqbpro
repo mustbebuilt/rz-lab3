@@ -8,13 +8,13 @@ CREATE TABLE IF NOT EXISTS &quot;staff&quot; (
     &quot;email&quot;      TEXT NOT NULL UNIQUE,
     &quot;department&quot; TEXT NOT NULL DEFAULT 'General',
     &quot;job_title&quot;  TEXT NOT NULL,
-    &quot;hire_date&quot;  TEXT NOT NULL DEFAULT (DATE('now')),
+    &quot;start_date&quot;  TEXT NOT NULL DEFAULT (DATE('now')),
     &quot;salary&quot;     REAL NOT NULL,
     &quot;is_active&quot;  INTEGER NOT NULL DEFAULT 1 CHECK(&quot;is_active&quot; IN (0, 1))
 );
 
 -- 2. Populate Sample Staff Data
-INSERT INTO &quot;staff&quot; (&quot;first_name&quot;, &quot;last_name&quot;, &quot;email&quot;, &quot;department&quot;, &quot;job_title&quot;, &quot;hire_date&quot;, &quot;salary&quot;, &quot;is_active&quot;) VALUES
+INSERT INTO &quot;staff&quot; (&quot;first_name&quot;, &quot;last_name&quot;, &quot;email&quot;, &quot;department&quot;, &quot;job_title&quot;, &quot;start_date&quot;, &quot;salary&quot;, &quot;is_active&quot;) VALUES
 ('Alice', 'Johnson', 'alice.johnson@company.com', 'Engineering', 'Engineering Manager', '2021-03-15', 55000.00, 1),
 ('Brian', 'Lee', 'brian.lee@company.com', 'Engineering', 'Senior Developer', '2022-06-01', 52000.00, 1),
 ('Carla', 'Gomez', 'carla.gomez@company.com', 'Human Resources', 'HR Specialist', '2020-09-12', 48000.00, 0),

@@ -5,6 +5,13 @@
 }
 
 <h1>Staff Details</h1>
+
+<div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+    <a asp-page="/Staff/Edit" asp-route-id="@Model.Staff.StaffId" class="btn btn-primary">Edit Record</a>
+    <a asp-page="/Staff/Delete" asp-route-id="@Model.Staff.StaffId" class="btn btn-outline" style="color: var(--danger); border-color: var(--danger);">Delete Record</a>
+    <a asp-page="/Staff/Index" class="btn btn-outline">Back to Directory</a>
+</div>
+
 <p>Detailed record for @Model.Staff.FirstName @Model.Staff.LastName.</p>
 
 <dl class="details-list">
@@ -23,8 +30,8 @@
     <dt>Job Title</dt>
     <dd>@Model.Staff.JobTitle</dd>
 
-    <dt>Hire Date</dt>
-    <dd>@Model.Staff.HireDate</dd>
+    <dt>Start date</dt>
+    <dd>@Model.Staff.StartDate</dd>
 
     <dt>Salary</dt>
     <dd>@Model.Staff.Salary.ToString("C")</dd>
