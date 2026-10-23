@@ -44,6 +44,7 @@ public class DeleteModel : PageModel
 
             // Execute SQL DELETE against SQLite
             await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = $"Staff member '{staff.FirstName} {staff.LastName}' was permanently deleted.";
         }
 
         // Post-Redirect-Get back to the directory

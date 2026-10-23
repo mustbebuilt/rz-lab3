@@ -61,6 +61,10 @@ public class EditModel : PageModel
             }
         }
 
+        // Before: return RedirectToPage("/Staff/Details", new { id = Staff.StaffId });
+TempData["SuccessMessage"] = $"Staff record for '{Staff.FirstName} {Staff.LastName}' was successfully updated.";
+return RedirectToPage("/Staff/Index");
+
         // Redirect to the updated Details view using the primary key route parameter
         return RedirectToPage("/Staff/Details", new { id = Staff.StaffId });
     }

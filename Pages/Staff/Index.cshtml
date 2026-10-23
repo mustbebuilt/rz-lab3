@@ -6,6 +6,16 @@
 
 <h1>Staff Directory</h1>
 <p>Total Active Employees: @Model.ActiveCount</p>
+
+<!-- Flash Success Notification -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 1.5rem;">
+        <span style="font-size: 1.25rem;">✅</span>
+        <span>@TempData["SuccessMessage"]</span>
+    </div>
+}
+
 <!-- Add New Staff Button -->
 <div style="margin-bottom: 1.25rem;">
     <a asp-page="/Staff/Create" class="btn btn-primary">+ Add New Staff Member</a>

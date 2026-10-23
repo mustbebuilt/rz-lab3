@@ -48,6 +48,10 @@ public class CreateModel : PageModel
         // Commit transaction and execute SQL INSERT against SQLite
         await _context.SaveChangesAsync();
 
+        // Set flash message for display after the redirect
+    TempData["SuccessMessage"] = $"Staff member '{Staff.FirstName} {Staff.LastName}' was successfully added.";
+
+
         // Follow the Post-Redirect-Get (PRG) pattern
         return RedirectToPage("/Staff/Index");
     }
